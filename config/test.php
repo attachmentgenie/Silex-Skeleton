@@ -6,5 +6,8 @@ use Silex\Provider\WebProfilerServiceProvider;
 // include the prod configuration
 require __DIR__.'/dev.php';
 
-// enable the debug mode
+// disable the debug mode
+$app['debug'] = false;
+
+// use session optimized for testing
 $app['session.test'] = true;

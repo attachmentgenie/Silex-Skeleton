@@ -12,8 +12,26 @@ class controllersTest extends WebTestCase
         return $app;
     }
 
-    public function testFooBar()
+    /**
+     * @group integration
+     * @group home
+     */
+    public function testHome()
     {
-        $this->markTestIncomplete();
+        $client = $this->createClient();
+        $client->request('GET', '/');
+        $this->assertTrue($client->getResponse()->isOk());
+    }
+
+    /**
+     * @group integration
+     * @group home
+     */
+    public function test404()
+    {
+        $client = $this->createClient();
+
+        $client->request('GET', '/give-me-a-404');
+        $this->assertEquals(404, $client->getResponse()->getStatusCode());
     }
 }
